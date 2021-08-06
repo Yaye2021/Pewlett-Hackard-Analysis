@@ -81,7 +81,7 @@ INTO mentorship_eligibilty
 FROM elegibility
 ORDER BY emp_no, to_date DESC;
 
---Additional queries
+--ADDITIONAL QUERIES
 --Depts
 SELECT ut.first_name,
 ut.last_name,
