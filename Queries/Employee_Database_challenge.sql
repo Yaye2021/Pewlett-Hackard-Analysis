@@ -80,3 +80,63 @@ title
 INTO mentorship_eligibilty
 FROM elegibility
 ORDER BY emp_no, to_date DESC;
+
+--Additional queries
+--Depts
+SELECT ut.first_name,
+ut.last_name,
+ut.title,
+de.dept_no
+INTO depts
+FROM unique_titles as ut
+INNER JOIN dept_emp as de
+ON ut.emp_no = de.emp_no
+ORDER BY de.emp_no;
+
+SELECT d.first_name,
+d.last_name,
+d.title,
+d.dept_no,
+de.dept_name
+--INTO depts1
+FROM depts as d
+INNER JOIN departments as de
+ON d.dept_no = de.dept_no
+ORDER BY de.dept_no;
+
+SELECT COUNT(first_name), dept_name
+--INTO retiring_depts
+FROM depts1
+GROUP BY dept_name
+ORDER BY COUNT DESC
+
+--Depts
+SELECT me.first_name,
+me.last_name,
+me.title,
+de.dept_no
+INTO deptsME
+FROM mentorship_eligibilty AS me
+INNER JOIN dept_emp as de
+ON me.emp_no = de.emp_no
+ORDER BY de.emp_no;
+
+SELECT dm.first_name,
+dm.last_name,
+dm.title,
+dm.dept_no,
+de.dept_name
+INTO depts2
+FROM deptsME as dm
+INNER JOIN departments as de
+ON dm.dept_no = de.dept_no
+ORDER BY de.dept_no;
+
+
+SELECT COUNT(first_name), dept_name
+--INTO retiring_depts
+FROM depts2
+GROUP BY dept_name
+ORDER BY COUNT DESC
+
+SELECT COUNT(title) FROM depts2;
